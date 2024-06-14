@@ -11,10 +11,10 @@
 DHT dht(DHTPIN, DHTTYPE);
 MQ135 gasSensor = MQ135(PIN_MQ135);
 
-const char* ssid     = "*****";
-const char* password = "*****";
+const char* ssid     = "khairiah@unifi";
+const char* password = "mawaddah";
 
-const char* SERVER_NAME = "your_url";
+const char* SERVER_NAME = "http://samaq.atwebpages.com/sensordata.php";
 String PROJECT_API_KEY = "tempQuality";
 
 unsigned long lastMillis = 0;
@@ -49,9 +49,9 @@ void loop() {
                 Serial.println("Failed to read from DHT sensor!");
             } else {
                 
-                float gas_level = gasSensor.getCorrectedPPM(temperature, humidity); 
+                //float gas_level = gasSensor.getCorrectedPPM(temperature, humidity); 
                 // Assuming MQ135 analog output is connected to A0
-                // float gas_level = analogRead(A0); 
+                float gas_level = analogRead(A0);
                 int air_quality = getAirQuality(gas_level);
 
                 sendSensorData(temperature, humidity, gas_level, air_quality);
@@ -70,9 +70,9 @@ void loop() {
 int getAirQuality(float gas_level) {
     // Implement your logic to determine air quality based on gas level
     // Example logic:
-    if (gas_level < 500) {
+    if (gas_level >=100.00 || gas_level<=750.00) {
         return 1; // High
-    } else if (gas_level >=500 || gas_level<=1000) {
+    } else if (gas_level >750.00 || gas_level<=1200.00) {
         return 2; // Moderate
     } else {
         return 3; // Low
