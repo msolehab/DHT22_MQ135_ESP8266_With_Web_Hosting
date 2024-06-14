@@ -11,10 +11,10 @@
 DHT dht(DHTPIN, DHTTYPE);
 MQ135 gasSensor = MQ135(PIN_MQ135);
 
-const char* ssid     = "khairiah@unifi";
-const char* password = "mawaddah";
+const char* ssid     = "*****";
+const char* password = "*****";
 
-const char* SERVER_NAME = "http://samaq.atwebpages.com/sensordata.php";
+const char* SERVER_NAME = "your_url";
 String PROJECT_API_KEY = "tempQuality";
 
 unsigned long lastMillis = 0;
