@@ -49,7 +49,9 @@ void loop() {
                 Serial.println("Failed to read from DHT sensor!");
             } else {
                 
-                float gas_level = gasSensor.getCorrectedPPM(temperature, humidity); // Assuming MQ135 analog output is connected to A0
+                float gas_level = gasSensor.getCorrectedPPM(temperature, humidity); 
+                // Assuming MQ135 analog output is connected to A0
+                // float gas_level = analogRead(A0); 
                 int air_quality = getAirQuality(gas_level);
 
                 sendSensorData(temperature, humidity, gas_level, air_quality);
